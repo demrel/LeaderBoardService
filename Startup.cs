@@ -49,6 +49,7 @@ namespace LeaderBoardService
             services.AddDbContext<DBContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+               // options.UseMySql(ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")));
             });
 
             services.AddIdentity<AppUser, IdentityRole>(options =>

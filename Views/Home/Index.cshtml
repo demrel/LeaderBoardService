@@ -79,9 +79,7 @@
 
 
 @section Scripts{
-
     <script src="~/js/dynamitable.jquery.min.js"></script>
-
 }
 
 <div class="row" style="margin: 10px 0;">
@@ -93,24 +91,20 @@
             <table class="js-dynamitable  table scrollable ">
                 <thead>
                     <tr>
-                        <th style="width:22%;" scope="col">#</th>
-                        <th scope="col">Şəkil</th>
+                        <th  scope="col">#</th>
+                       @* <th scope="col">Şəkil</th>*@
                         <th scope="col">AD</th>
                         <th scope="col">Telefon Nömrəsi</th>
                         <th scope="col">Maksimal Xalı</th>
                         <th scope="col">Yeri</th>
                         <th scope="col">Vaxtı</th>
-                        @*<th scope="col">#</th>*@
-
-
+                        <th scope="col">#</th>
                     </tr>
                     <tr>
-                        <th style="width:22%;">
-                            <input class="js-filter  form-control" type="text" value="">
+                        <th >
+                            @*<input class="js-filter  form-control" type="text" value="">*@
                         </th>
-                        <th>
-
-                        </th>
+                      
                         <th>
                             <input class="js-filter  form-control" type="text" value="">
                         </th>
@@ -126,9 +120,9 @@
                         <th>
                             <input class="js-filter  form-control" type="date" value="">
                         </th>
-                        @*<th>
+                        <th>
 
-                        </th>*@
+                        </th>
                     </tr>
 
                 </thead>
@@ -141,7 +135,7 @@
 
                          <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserFBID</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><img class="profile-photo" src=" @item.UserPhoto" alt="@item.UserName" /></td>
+                       @* <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><img class="profile-photo" src=" @item.UserPhoto" alt="@item.UserName" /></td>*@
 
                         <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserName</td>
 
@@ -151,10 +145,9 @@
 
                         <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.Rank</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.ScoreTime</td>
+                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.ScoreTime.AddHours(4)</td>
 
-                        @*<td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href=""><i class="fab fa-sistrix"></i></a></td>*@
-
+                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href="@Url.Action("Show", "Home", new {  userID = item.UserId }, null)"><i class="fab fa-sistrix"></i></a></td>
                     </tr>
 
                         }

@@ -1,0 +1,154 @@
+﻿@model LeaderBoardService.Models.Home.ShowViewModel
+@section Style{
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .profile-photo {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 150px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5em;
+            text-align: left;
+            vertical-align: top;
+            font-weight: normal;
+        }
+
+        .scrollable thead,
+        .scrollable tfoot,
+        .scrollable tbody,
+        .scrollable th,
+        .scrollable td {
+            display: block;
+            width: 100%;
+        }
+
+        .scrollable tbody {
+            overflow-y: scroll;
+        }
+
+        .scrollable thead,
+        .scrollable tfoot {
+            -ms-overflow-style: none;
+        }
+
+            .scrollable thead::-webkit-scrollbar,
+            .scrollable tfoot::-webkit-scrollbar {
+                visibility: hidden;
+            }
+
+        .scrollable tbody {
+            max-height: 69.6vh;
+            position: relative;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+        .scrollable tr {
+            display: flex;
+        }
+
+        .scrollable tbody th,
+        .scrollable tbody td {
+            border-top: none;
+        }
+
+        .scrollable th:not(:last-child),
+        .scrollable td:not(:last-child) {
+            border-right: none;
+        }
+
+
+        body {
+            margin: 0
+        }
+
+        .gm-svpc {
+            display: none;
+        }
+    </style>
+}
+
+
+
+@section Scripts{
+    <script src="~/js/dynamitable.jquery.min.js"></script>
+}
+
+
+<div class="row" style="margin: 10px 0;">
+    <div class="col-md-4 col-sm-4 mb-5" style="padding-right: 10px;
+        padding-left: 20px;">
+            <div class="panel widget light-widget panel-bd-top">
+                <div class="panel-heading no-title"> </div>
+                <div class="panel-body">
+                    <div class="text-center vd_info-parent"> <img alt="@Model.Name" src="@Model.PhotoUrl"> </div>
+                    <h2 class="font-semibold mgbt-xs-5">@Model.Name</h2>
+                    <div class="mgtp-20">
+                        <table class="table table-striped ">
+                            <tbody>
+                                <tr>
+                                    <td>Telefon: </td>
+                                    <td>@Model.PhoneNumber </td>
+                                </tr>
+                                <tr>
+                                    <td>Qeydiyatdan keçib</td>
+                                    <td> @Model.time </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+
+        <div class="col-md-8 col-sm-8 mb-5" style="padding-right: 10px;
+        padding-left: 20px;">
+            <div class="table-responsive ">
+                <table class="js-dynamitable  table scrollable ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Xal</th>
+                            <th scope="col">Oynama Müddəti</th>
+                            <th scope="col">Oynama vaxtı</th>
+                        </tr>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+                                <input class="js-filter  form-control" type="date" value="">
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="myTable">
+                        @for (int i = 0; i < Model.score.Count; i++)
+                        {
+                            var item = Model.score[i];
+
+                            <tr id="@Model.Name">
+
+                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
+                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
+                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>

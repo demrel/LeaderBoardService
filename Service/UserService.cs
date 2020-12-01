@@ -50,7 +50,7 @@ namespace LeaderBoardService.Service
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.User.Find(id);
         }
 
 

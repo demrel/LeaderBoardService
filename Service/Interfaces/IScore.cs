@@ -10,6 +10,8 @@ namespace  LeaderBoardService.Service.Interfaces
         public scoredbo GetUserRank2(int userID);
         public List<usersscoredbo> GetUsersRanks(int UserLimit);
 
+        public List<LeaderBoard> GetUserScores(int userId);
+
         // public dynamic GetUserRankd(int userID);
         public int GetUserBestScore(int userID);
 

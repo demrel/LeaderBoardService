@@ -17,7 +17,11 @@ namespace LeaderBoardService.Service
         {
             _context = context;
         }
-
+        public List<LeaderBoard> GetUserScores(int userId)
+        {
+            return _context.LeaderBoard.Where(l => l.UserID == userId).ToList();
+           
+        }
         public void Add(LeaderBoard item)
         {
             _context.Add(item);
