@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace LeaderBoardService
 {
@@ -46,9 +47,12 @@ namespace LeaderBoardService
                                   });
             });
 
+
+
+
             services.AddDbContext<DBContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
                // options.UseMySql(ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")));
             });
 

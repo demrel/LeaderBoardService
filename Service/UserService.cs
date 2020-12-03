@@ -14,7 +14,7 @@ namespace LeaderBoardService.Service
     public class UserService:IUser
     {
         private static readonly string appKey = "15a57323a89d93ee21b5e01fbb4f5b0e";
-        private static readonly string appKeyTest = "1f1ea23db80418337ecd0f5c04968992"; 
+     //   private static readonly string appKeyTest = "1f1ea23db80418337ecd0f5c04968992"; 
         private readonly DBContext _context;
         public UserService(DBContext context)
         {
@@ -60,7 +60,7 @@ namespace LeaderBoardService.Service
             {
                 return null;
             }
-            using (HMACSHA256 hmac = new HMACSHA256((Encoding.UTF8.GetBytes(appKeyTest))))
+            using (HMACSHA256 hmac = new HMACSHA256((Encoding.UTF8.GetBytes(appKey))))
             {
                 //PaHH4oNgd0II-JAlNXg-eULb3lHtb7IWi3ZJ2jkzp8U.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTYwMjAwMDYxMywicGxheWVyX2lkIjoiNDM1Mzg4NzA5MTM1MTQwNyIsInJlcXVlc3RfcGF5bG9hZCI6bnVsbH0
                 //ExPdbfp8-Ynckhz_DS7pjdfDRYckCIS-OrYumdlLPsE.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTYwMjAxMTM5NSwicGxheWVyX2lkIjoiNDM1Mzg4NzA5MTM1MTQwNyIsInJlcXVlc3RfcGF5bG9hZCI6bnVsbH0
