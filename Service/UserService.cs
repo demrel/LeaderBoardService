@@ -13,7 +13,8 @@ namespace LeaderBoardService.Service
 {
     public class UserService:IUser
     {
-        private static readonly string appKey = "15a57323a89d93ee21b5e01fbb4f5b0e";
+      private static readonly string appKey="4e220b3be3d223c9ab610c4440095021";
+	//  private static readonly string appKey = "15a57323a89d93ee21b5e01fbb4f5b0e";
      //   private static readonly string appKeyTest = "1f1ea23db80418337ecd0f5c04968992"; 
         private readonly DBContext _context;
         public UserService(DBContext context)

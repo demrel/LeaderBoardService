@@ -13,8 +13,7 @@ using LeaderBoardService.Models.Home;
 
 namespace LeaderBoardService.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class HomeController : Controller
+     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IScore _scoreService;
@@ -26,7 +25,8 @@ namespace LeaderBoardService.Controllers
             _userService = userService;
         }
 
-        public IActionResult Index(int id)
+ [Authorize(Roles = "Admin")]   
+     public IActionResult Index(int id)
         {
             if (id>200)
             {
@@ -40,7 +40,7 @@ namespace LeaderBoardService.Controllers
             model.userData= _scoreService.GetUsersRanks(id);
             return View(model);
         }
-
+ [Authorize(Roles = "Admin")]
         public IActionResult Show(int userID)
         {
             var user = _userService.GetById(userID);
@@ -65,7 +65,13 @@ namespace LeaderBoardService.Controllers
             }
          
         }
+	public IActionResult Privacy(){
+return View();
+}
 
+public IActionResult Datadelete(){
+return View();
+}
 
     }
 }
