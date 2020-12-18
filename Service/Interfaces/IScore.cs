@@ -1,6 +1,7 @@
 ﻿using LeaderBoardService.Data.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace  LeaderBoardService.Service.Interfaces
 {
@@ -9,7 +10,7 @@ namespace  LeaderBoardService.Service.Interfaces
         public LeaderBoard GetUserRank(int userID);
         public scoredbo GetUserRank2(int userID);
         public List<usersscoredbo> GetUsersRanks(int UserLimit);
-
+        public  Task<List<usersscoredbo>> GetUsersRanksAsync();
         public List<LeaderBoard> GetUserScores(int userId);
 
         // public dynamic GetUserRankd(int userID);

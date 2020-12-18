@@ -80,19 +80,27 @@
 
 @section Scripts{
     <script src="~/js/dynamitable.jquery.min.js"></script>
+    <script src="~/js/html2csv.js"></script>
 }
+
 
 <div class="row" style="margin: 10px 0;">
     <div class="col-md-12 col-sm-12 mb-5" style="padding-right: 10px;
-        padding-left: 20px;
+        padding-left: 20px;">
 
-">
+
+        <div class="bd-example">
+            <a href="@Url.Action("GetCSV","Home")" type="button" class="btn btn-primary">
+                CSV Faylı yükLə
+            </a>
+        </div>
+
         <div class="table-responsive ">
-            <table class="js-dynamitable  table scrollable ">
+            <table id="leaderboard" class="js-dynamitable  table scrollable ">
                 <thead>
                     <tr>
-                        <th  scope="col">#</th>
-                       @* <th scope="col">Şəkil</th>*@
+                        <th scope="col">#</th>
+                        @* <th scope="col">Şəkil</th>*@
                         <th scope="col">AD</th>
                         <th scope="col">Telefon Nömrəsi</th>
                         <th scope="col">Maksimal Xalı</th>
@@ -101,10 +109,10 @@
                         <th scope="col">#</th>
                     </tr>
                     <tr>
-                        <th >
+                        <th>
                             @*<input class="js-filter  form-control" type="text" value="">*@
                         </th>
-                      
+
                         <th>
                             <input class="js-filter  form-control" type="text" value="">
                         </th>
@@ -128,29 +136,29 @@
                 </thead>
                 <tbody id="myTable">
                     @for (int i = 0; i < Model.userData.Count; i++)
-                        {
-                            var item = Model.userData[i];
-                  
+                    {
+                        var item = Model.userData[i];
+
                         <tr id="@item.UserFBID">
 
-                         <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserFBID</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserFBID</td>
 
-                       @* <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><img class="profile-photo" src=" @item.UserPhoto" alt="@item.UserName" /></td>*@
+                            @* <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><img class="profile-photo" src=" @item.UserPhoto" alt="@item.UserName" /></td>*@
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserName</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.UserName</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.UserTelNumber </td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.UserTelNumber </td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.AverageScore</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.AverageScore</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.Rank</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.Rank</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.ScoreTime.AddHours(4)</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center"> @item.ScoreTime.AddHours(4)</td>
 
-                        <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href="@Url.Action("Show", "Home", new {  userID = item.UserId }, null)"><i class="fab fa-sistrix"></i></a></td>
-                    </tr>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href="@Url.Action("Show", "Home", new {  userID = item.UserId }, null)"><i class="fab fa-sistrix"></i></a></td>
+                        </tr>
 
-                        }
+                    }
 
                 </tbody>
             </table>

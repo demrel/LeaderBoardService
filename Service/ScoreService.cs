@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using LeaderBoardService.Data;
 using LeaderBoardService.Data.Model;
 using LeaderBoardService.Service.Interfaces;
@@ -151,8 +152,8 @@ namespace LeaderBoardService.Service
 
         public List<usersscoredbo> GetUsersRanks(int UserLimit)
         {
-            var scoreCard = _context.LeaderBoard.Include(l => l.User)
-                  .ToList()
+
+            var scoreCard = _context.LeaderBoard.Include(l => l.User).AsParallel()
                   .GroupBy(u => u.UserID)
                   .OrderByDescending(grp => grp.Max(u => u.Score))
                   .Select((grp, i) => new usersscoredbo
@@ -168,6 +169,26 @@ namespace LeaderBoardService.Service
                   }).AsParallel().Take(UserLimit).OrderBy(a => a.Rank)
                   .ToList();
             return scoreCard;
+        }
+
+        public async Task<List<usersscoredbo>> GetUsersRanksAsync()
+        {
+            var scoreCard =  _context.LeaderBoard.Include(l => l.User).AsParallel()
+                  .GroupBy(u => u.UserID)
+                  .OrderByDescending(grp => grp.Max(u => u.Score))
+                  .Select((grp, i) => new usersscoredbo
+                  {
+                      UserId = grp.Key,
+                      Rank = i + 1,
+                      UserFBID = grp.Max(u => u.User.FBID),
+                      UserName = grp.Max(u => u.User.Name),
+                      UserPhoto = grp.Max(u => u.User.PhotoUrl),
+                      UserTelNumber = grp.Max(u => u.User.PhoneNumber),
+                      ScoreTime = grp.Max(u => u.Time),
+                      AverageScore = grp.Max(u => u.Score)
+                  }).AsParallel().OrderBy(a => a.Rank).ToList();
+                  
+            return await Task.FromResult(scoreCard);
         }
     }
 }
