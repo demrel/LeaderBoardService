@@ -25,8 +25,21 @@ namespace LeaderBoardService.Service
         }
         public void Add(LeaderBoard item)
         {
-            _context.Add(item);
-            _context.SaveChanges();
+            if (CheckTokenUsed(item.Token))
+            {
+                _context.Add(item);
+                _context.SaveChanges();
+            }
+        }
+
+        private bool CheckTokenUsed(string token)
+        {
+            var a = _context.LeaderBoard.Where(l => l.Token == token).First();
+            if (a!=null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public int GetUserBestScore(int userID)

@@ -34,6 +34,7 @@ namespace LeaderBoardSysytem.Controllers
                     leaderBoard.Time = DateTime.Now;
                     leaderBoard.PlayTime = model.PlayTime;
                     leaderBoard.User = user;
+                    leaderBoard.Token = sign;
                     _scoreService.Add(leaderBoard);
                     UserResult result = new UserResult();
                     scoredbo data = _scoreService.GetUserRank2(user.ID);

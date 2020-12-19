@@ -9,13 +9,14 @@ namespace LeaderBoardService.Data.Model
    
         public class LeaderBoard
         {
-        public int ID { get; set; }
+            public int ID { get; set; }
             public int Score { get; set; }
             public DateTime Time { get; set; }
             public float PlayTime { get; set; }
             public int UserID { get; set; }
             public int? rank { get; set; }
             public User User { get; set; }
+            public string Token { get; set; }
         }
     
 }

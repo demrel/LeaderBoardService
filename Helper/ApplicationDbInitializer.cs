@@ -8,8 +8,8 @@ namespace LeaderBoardService.Helper
     {
         public static void SeedUsers(UserManager<AppUser> userManager,RoleManager<IdentityRole> roleManager)
         {
-         
-    
+
+
         }
   
     }

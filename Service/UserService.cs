@@ -63,8 +63,7 @@ namespace LeaderBoardService.Service
             }
             using (HMACSHA256 hmac = new HMACSHA256((Encoding.UTF8.GetBytes(appKey))))
             {
-                //PaHH4oNgd0II-JAlNXg-eULb3lHtb7IWi3ZJ2jkzp8U.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTYwMjAwMDYxMywicGxheWVyX2lkIjoiNDM1Mzg4NzA5MTM1MTQwNyIsInJlcXVlc3RfcGF5bG9hZCI6bnVsbH0
-                //ExPdbfp8-Ynckhz_DS7pjdfDRYckCIS-OrYumdlLPsE.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTYwMjAxMTM5NSwicGxheWVyX2lkIjoiNDM1Mzg4NzA5MTM1MTQwNyIsInJlcXVlc3RfcGF5bG9hZCI6bnVsbH0
+
                 try
                 {
                     var firstpart = usersing.Split('.')[0];
@@ -85,9 +84,9 @@ namespace LeaderBoardService.Service
                         FacebookDataModel facebookData = JsonSerializer.Deserialize<FacebookDataModel>(jsonData);
                         DateTime created = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(facebookData.issued_at);
                         DateTime now = DateTime.UtcNow;
-                        int second = (now - created).Seconds;
+                        double second = (now - created).TotalSeconds;
                         //check time;
-                        if (second < 60)
+                        if (second < 10)
                         {
                             return facebookData.player_id;
                         }
