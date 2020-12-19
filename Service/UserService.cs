@@ -86,7 +86,7 @@ namespace LeaderBoardService.Service
                         DateTime now = DateTime.UtcNow;
                         double second = (now - created).TotalSeconds;
                         //check time;
-                        if (second < 10)
+                        if (second < 20)
                         {
                             return facebookData.player_id;
                         }
