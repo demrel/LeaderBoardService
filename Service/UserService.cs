@@ -82,7 +82,7 @@ namespace LeaderBoardService.Service
                         var byteText = Base64Decode(userData);
                         var jsonData = Encoding.UTF8.GetString(byteText);
                         FacebookDataModel facebookData = JsonSerializer.Deserialize<FacebookDataModel>(jsonData);
-                        DateTime created = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(facebookData.issued_at);
+                        DateTime created = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(facebookData.issued_at).ToLocalTime();
                         DateTime now = DateTime.UtcNow;
                         double second = (now - created).TotalSeconds;
                         //check time;
