@@ -25,16 +25,17 @@ namespace LeaderBoardService.Service
         }
         public void Add(LeaderBoard item)
         {
-            if (CheckTokenUsed(item.Token))
+            if (CheckTokenUsed(item.Token,item.User.ID))
             {
                 _context.Add(item);
                 _context.SaveChanges();
             }
         }
 
-        private bool CheckTokenUsed(string token)
+        private bool CheckTokenUsed(string token,int id)
         {
-            var a = _context.LeaderBoard.Where(l => l.Token == token).First();
+            var a = _context.LeaderBoard.Where(l=>l.UserID==id)
+                .Where(l => l.Token == token).FirstOrDefault();
             if (a!=null)
             {
                 return false;
