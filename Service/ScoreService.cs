@@ -149,7 +149,7 @@ namespace LeaderBoardService.Service
                 {
                     var ar = sign.Split('.');
                     m = ar[2];
-                    s = ar[0] + ar[1];
+                    s = ar[0]+"." + ar[1];
                 }
                 catch (Exception)
                 {
@@ -181,7 +181,7 @@ namespace LeaderBoardService.Service
                 {
                     var ar = sign.Split('.');
                     m = ar[2];
-                    s = ar[0] + ar[1];
+                    s = ar[0]+"." + ar[1];
                 }
                 catch (Exception)
                 {
@@ -189,7 +189,7 @@ namespace LeaderBoardService.Service
                     return false;
                 }
 
-                var a = input.dad + input.dad.Length * 5115 + input.Log + s + s.Length *  1551 + s.Substring(0, 10)+ "csrun";
+                var a = input.dad + input.dad.Length * 5115 + s + s.Length *  1551 + s.Substring(0, 10)+ "csrun";
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
@@ -214,7 +214,7 @@ namespace LeaderBoardService.Service
                 {
                     var ar = sign.Split('.');
                     m = ar[2];
-                    s = ar[0] + ar[1];
+                    s = ar[0]+"." + ar[1];
                 }
                 catch (Exception)
                 {

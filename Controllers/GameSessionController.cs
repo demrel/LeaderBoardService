@@ -24,7 +24,7 @@ namespace LeaderBoardSysytem.Controllers
         public IActionResult Post([FromHeader] string sign ,[FromBody] SessionDataModel model)
         {
             string userFBID = _userService.Validate(sign);
-            // var userFBID = "3485479291543174";
+       
             if (userFBID != null)
             {
                 if (!_scoreService.CheckMd5S(model, sign))
