@@ -1,0 +1,132 @@
+﻿@model LeaderBoardService.Models.Home.ShowSessionViewModel
+@section Style{
+    <style>
+        table {
+            width: 200%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .profile-photo {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 150px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.5em;
+            text-align: left;
+            vertical-align: top;
+            font-weight: normal;
+        }
+
+        .scrollable thead,
+        .scrollable tfoot,
+        .scrollable tbody,
+        .scrollable th,
+        .scrollable td {
+            display: block;
+            width: 100%;
+        }
+
+        .scrollable tbody {
+            overflow-y: scroll;
+        }
+
+        .scrollable thead,
+        .scrollable tfoot {
+            -ms-overflow-style: none;
+        }
+
+            .scrollable thead::-webkit-scrollbar,
+            .scrollable tfoot::-webkit-scrollbar {
+                visibility: hidden;
+            }
+
+        .scrollable tbody {
+            max-height: 69.6vh;
+            position: relative;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+        .scrollable tr {
+            display: flex;
+        }
+
+        .scrollable tbody th,
+        .scrollable tbody td {
+            border-top: none;
+        }
+
+        .scrollable th:not(:last-child),
+        .scrollable td:not(:last-child) {
+            border-right: none;
+        }
+
+
+        body {
+            margin: 0
+        }
+
+        .gm-svpc {
+            display: none;
+        }
+    </style>
+}
+
+
+
+@section Scripts{
+    <script src="~/js/dynamitable.jquery.min.js"></script>
+}
+
+
+        <div class="col-md-8 col-sm-8 mb-5" style="padding-right: 10px;
+        padding-left: 20px;">
+            <div class="table-responsive ">
+                <table class="js-dynamitable  table scrollable ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Şəkil 1 ci </th>
+                            <th scope="col">ŞəMüddət 1 ci</th>
+                            <th scope="col">Ətraflı məlumat 1 ci</th>
+
+                            <th scope="col">Şəkil 2 ci </th>
+                            <th scope="col">ŞəMüddət 2 ci</th>
+                            <th scope="col">Ətraflı məlumat 2 ci</th>
+
+                            <th scope="col">Şəkil 3 cü</th>
+                            <th scope="col">ŞəMüddət 3 cü</th>
+                            <th scope="col">Ətraflı məlumat 3 cü</th>
+                        </tr>
+                       
+
+                    </thead>
+                    <tbody id="myTable">
+                     
+                         
+
+                        <tr id="@Model.Token">
+
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y1I</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y1T</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y1L</td>
+
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y2I</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y2T</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y2L</td>
+
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y3I</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y3T</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@Model.Y3L</td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+

@@ -51,7 +51,7 @@ namespace LeaderBoardService.Controllers
                 List<LeaderBoard> leaderboard = _scoreService.GetUserScores(userID);
                 foreach (var item in leaderboard)
                 {
-                    UserScoresDTO scoreDto = new UserScoresDTO() { Time = item.Time.AddHours(4), PlayTime = item.PlayTime, Score = item.Score };
+                    UserScoresDTO scoreDto = new UserScoresDTO() { Time = item.Time.AddHours(4), PlayTime = item.PlayTime, Score = item.Score,StartTime=item.session.startTime };
                     model.score.Add(scoreDto);
                 }
                 model.Name = user.Name;
@@ -84,6 +84,33 @@ namespace LeaderBoardService.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult ShowSession(int leaderboardID)
+        {
+            var gs = _scoreService.GetSessionByBoard(leaderboardID);
+            if (gs != null)
+            {
+                ShowSessionViewModel model = new ShowSessionViewModel();
+                model.Token = gs.Token;
+                model.Y1I = gs.Y1I;
+                model.Y1L = gs.Y1L;
+                model.Y1T = gs.Y1T;
+
+                model.Y2I = gs.Y2I;
+                model.Y2L = gs.Y2L;
+                model.Y2T = gs.Y2T;
+
+                model.Y3I = gs.Y3I;
+                model.Y3L = gs.Y3L;
+                model.Y3T = gs.Y3T;
+                return View(model);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
         private async Task<byte[]> makeString(List<usersscoredbo> data)
         {
             try

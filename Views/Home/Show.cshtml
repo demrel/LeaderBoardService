@@ -138,12 +138,13 @@
                         {
                             var item = Model.score[i];
 
-                            <tr id="@Model.Name">
+                        <tr id="@Model.Name">
 
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
-                            </tr>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.StartTime</td>
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
+                        </tr>
                         }
 
                     </tbody>

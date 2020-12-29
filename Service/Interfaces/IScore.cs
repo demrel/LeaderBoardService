@@ -22,9 +22,11 @@ namespace  LeaderBoardService.Service.Interfaces
         public void addTestScore();
         public void addTestScore(int UserID);
         public GameSession CreateSession(int id);
-        public void setDataToSession(string token, string log, string img);
+        public void setDataToSession(SessionDataModel model);
         public GameSession GetSession(string token);
         public bool CheckMd5S(FBUsercScoreDataModel input, string sign);
+        public bool CheckMd5S(SessionDataModel input, string sign);
         public bool CheckMd5S(string sign);
+        public GameSession GetSessionByBoard(int id);
     }
 }

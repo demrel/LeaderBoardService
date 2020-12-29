@@ -10,5 +10,7 @@ namespace LeaderBoardService.Models
         public int Score { get; set; }
         public DateTime Time { get; set; }
         public float PlayTime { get; set; }
+        public DateTime StartTime { get; set; }
+
     }
 }

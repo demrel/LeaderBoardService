@@ -21,41 +21,28 @@ namespace LeaderBoardSysytem.Controllers
 
         [HttpPost]
         [EnableCors("_myAllowSpecificOrigins")]
-        public IActionResult Post([FromHeader] string sign ,[FromBody]FBUsercScoreDataModel model)
+        public IActionResult Post([FromHeader] string sign ,[FromBody] SessionDataModel model)
         {
-            string userFBID=_userService.Validate(sign);
-            
-            if (userFBID!=null)
+            string userFBID = _userService.Validate(sign);
+            // var userFBID = "3485479291543174";
+            if (userFBID != null)
             {
-
                 if (!_scoreService.CheckMd5S(model, sign))
                 {
                     return NotFound();
                 }
 
                 User user = _userService.getByFBID(userFBID);
-                if (user!=null)
+                if (user != null)
                 {
-                    var s = _scoreService.GetSession(model.token);
+                    var s = _scoreService.GetSession(model.dad);
                     if (s == null)
                     {
-                        return NotFound(sign);
+                        return NotFound();
                     }
 
-                    LeaderBoard leaderBoard = new LeaderBoard();
-                    leaderBoard.Score = model.score;
-                    leaderBoard.Time = DateTime.Now;
-                    leaderBoard.PlayTime = model.PlayTime;
-                    leaderBoard.User = user;
-                    leaderBoard.Token = sign;
-                    leaderBoard.session = s;
-                    _scoreService.Add(leaderBoard);
-                    UserResult result = new UserResult();
-                    scoredbo data = _scoreService.GetUserRank2(user.ID);
-
-                    result.Rank =(int) data.Rank;
-                    result.BestScore = data.AverageScore;
-                    return Ok(result);
+                    _scoreService.setDataToSession(model);
+                    return Ok();
                 }
                 return NotFound();
             }
@@ -64,12 +51,12 @@ namespace LeaderBoardSysytem.Controllers
 
         [HttpGet]
         [EnableCors("_myAllowSpecificOrigins")]
-        public IActionResult Get([FromHeader]string sign)
+        public IActionResult Get([FromHeader] string sign)
         {
             string userFBID = _userService.Validate(sign);
             if (userFBID != null)
             {
-                if (!_scoreService.CheckMd5S(string sign))
+                if (!_scoreService.CheckMd5S(sign))
                 {
                     return NotFound();
                 }
@@ -77,8 +64,14 @@ namespace LeaderBoardSysytem.Controllers
                 User user = _userService.getByFBID(userFBID);
                 if (user != null)
                 {
-
+                  var gameSes=  _scoreService.CreateSession(user.ID);
+                    if (gameSes!=null)
+                    {
+                        return Ok(gameSes.Token);
+                    }
+                  
                 }
+            }
             return NotFound();
         }
 
