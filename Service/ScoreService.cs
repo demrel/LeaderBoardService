@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using LeaderBoardService.Data;
 using LeaderBoardService.Data.Model;
+using LeaderBoardService.Models;
 using LeaderBoardService.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -77,6 +79,44 @@ namespace LeaderBoardService.Service
             //}).Where(s => s.UserID == userID);
         }
 
+        public GameSession CreateSession(int id)
+        {
+            GameSession gs = new GameSession();
+            gs.Token = Guid.NewGuid().ToString();
+            gs.startTime = DateTime.UtcNow;
+            gs.UserID = id;
+            return gs;
+        }
+        public void setDataToSession(string token,string log,string img)
+        {
+            var session=GetSession(token);
+            if (session==null)
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(session.Y1L))
+            {
+                session.Y1L = log;
+                session.Y1T = DateTime.UtcNow;
+                session.Y1I = img;
+            }
+            else if (string.IsNullOrEmpty(session.Y2L))
+            {
+                session.Y2L = log;
+                session.Y2T = DateTime.UtcNow;
+                session.Y2I = img;
+            }
+            else if (string.IsNullOrEmpty(session.Y3L))
+            {
+                session.Y3L = log;
+                session.Y3T = DateTime.UtcNow;
+                session.Y3I = img;
+            }
+        }
+        public GameSession GetSession(string token)
+        {
+            return _context.GameSession.Where(g => g.Token == token).FirstOrDefault();
+        }
         public scoredbo GetUserRank2(int userID)
         {
             var scoreCard = _context.LeaderBoard
@@ -94,6 +134,59 @@ namespace LeaderBoardService.Service
             return scoreCard;
         }
 
+        public  bool CheckMd5S(FBUsercScoreDataModel input,string sign)
+        {
+            // Use input string to calculate MD5 hash
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                 
+
+
+                var a = input.score + input.score * 1551 + input.PlayTime + sign + sign.Length * 5115 +   sign.Substring(0,10);
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+
+                return sb.ToString().ToLower()==input.m;
+            }
+        }
+
+        public bool CheckMd5S(string sign)
+        {
+            // Use input string to calculate MD5 hash
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                string m = "";
+                try
+                {
+                        
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+
+                var a = sign + sign.Length * 151555 + sign.Substring(0, 10);
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+
+                return sb.ToString().ToLower() == m;
+            }
+        }
         public void addTestUser()
         {
             Random rnd = new Random();

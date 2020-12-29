@@ -1,4 +1,5 @@
 ﻿using LeaderBoardService.Data.Model;
+using LeaderBoardService.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,7 +21,10 @@ namespace  LeaderBoardService.Service.Interfaces
         public void addTestUser();
         public void addTestScore();
         public void addTestScore(int UserID);
-
-
+        public GameSession CreateSession(int id);
+        public void setDataToSession(string token, string log, string img);
+        public GameSession GetSession(string token);
+        public bool CheckMd5S(FBUsercScoreDataModel input, string sign);
+        public bool CheckMd5S(string sign);
     }
 }

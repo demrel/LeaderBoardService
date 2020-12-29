@@ -9,11 +9,11 @@ namespace LeaderBoardSysytem.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ScoreController: ControllerBase
+    public class GameSession : ControllerBase
     {
         private readonly IScore _scoreService;
         private readonly IUser _userService;
-        public ScoreController(IScore scoreSerivce,IUser userService)
+        public GameSession(IScore scoreSerivce,IUser userService)
         {
             _scoreService = scoreSerivce;
             _userService = userService;
@@ -24,10 +24,11 @@ namespace LeaderBoardSysytem.Controllers
         public IActionResult Post([FromHeader] string sign ,[FromBody]FBUsercScoreDataModel model)
         {
             string userFBID=_userService.Validate(sign);
-           // var userFBID = "3485479291543174";
+            
             if (userFBID!=null)
             {
-                if (!_scoreService.CheckMd5S(model,sign))
+
+                if (!_scoreService.CheckMd5S(model, sign))
                 {
                     return NotFound();
                 }
@@ -38,7 +39,7 @@ namespace LeaderBoardSysytem.Controllers
                     var s = _scoreService.GetSession(model.token);
                     if (s == null)
                     {
-                        return NotFound();
+                        return NotFound(sign);
                     }
 
                     LeaderBoard leaderBoard = new LeaderBoard();
@@ -65,29 +66,22 @@ namespace LeaderBoardSysytem.Controllers
         [EnableCors("_myAllowSpecificOrigins")]
         public IActionResult Get([FromHeader]string sign)
         {
-
             string userFBID = _userService.Validate(sign);
             if (userFBID != null)
             {
-                
-                User user = _userService.getByFBID(userFBID);
-                LeaderBoard rank = _scoreService.GetUserRank(user.ID);
-                if (rank!=null)
-                {
-                    UserResult result = new UserResult();
-                    result.Rank = (int)rank.rank;
-                    result.BestScore = rank.Score;
-                    return Ok(result);
-                }
-                else
+                if (!_scoreService.CheckMd5S(string sign))
                 {
                     return NotFound();
                 }
-               
-            }
+
+                User user = _userService.getByFBID(userFBID);
+                if (user != null)
+                {
+
+                }
             return NotFound();
         }
 
-
+      
     }
 }

@@ -9,7 +9,7 @@ namespace LeaderBoardService.Data
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
         public DbSet<LeaderBoard> LeaderBoard { get; set; }
-    
+        public DbSet<GameSession> GameSession { get; set; }
         public DbSet<User> User { get; set; }
 
     }

@@ -17,6 +17,8 @@ namespace LeaderBoardService.Data.Model
             public int? rank { get; set; }
             public User User { get; set; }
             public string Token { get; set; }
+            public GameSession session { get; set; }
+        
         }
     
 }

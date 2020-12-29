@@ -40,7 +40,7 @@ namespace LeaderBoardService
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("https://apps-1040731663004960.apps.fbsbx.com", "https://fb.gg/play/sakitqac")
+                                      builder.WithOrigins("https://apps-1040731663004960.apps.fbsbx.com", "https://fb.gg/play/sakitqac", "http://localhost:7456")
                                              .AllowAnyMethod()
                                              .AllowAnyHeader();
                                   });
