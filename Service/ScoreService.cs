@@ -161,7 +161,7 @@ namespace LeaderBoardService.Service
                     return false;
                 }
 
-                var a = input.score + input.score * 1551 + input.token + input.token.Length * 528+  s + s.Length * 5115 +   s.Substring(0,10)+"csrun";
+                var a = s + s.Length * 151555 + s.Substring(0, 10) + "csrun";
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
@@ -193,7 +193,7 @@ namespace LeaderBoardService.Service
                     return false;
                 }
 
-                var a = input.dad + input.dad.Length * 5115 + s + s.Length *  1551 + s.Substring(0, 10)+ "csrun";
+                var a = s + s.Length * 151555 + s.Substring(0, 10) + "csrun";
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
