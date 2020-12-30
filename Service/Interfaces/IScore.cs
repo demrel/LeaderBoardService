@@ -21,7 +21,7 @@ namespace  LeaderBoardService.Service.Interfaces
         public void addTestUser();
         public void addTestScore();
         public void addTestScore(int UserID);
-        public GameSession CreateSession(int id);
+        public GameSession CreateSession(User user);
         public void setDataToSession(SessionDataModel model);
         public GameSession GetSession(string token);
         public bool CheckMd5S(FBUsercScoreDataModel input, string sign);

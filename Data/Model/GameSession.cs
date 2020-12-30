@@ -22,8 +22,7 @@ namespace LeaderBoardService.Data.Model
         public DateTime Y3T { get; set; }
         public int UserID { get; set; }
         public User user { get; set; }
-        public int LeaderBoardID { get; set; }
-        public  LeaderBoard leaderboard { get; set; }
+        
 
     }
 }

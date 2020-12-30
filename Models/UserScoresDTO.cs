@@ -11,6 +11,7 @@ namespace LeaderBoardService.Models
         public DateTime Time { get; set; }
         public float PlayTime { get; set; }
         public DateTime StartTime { get; set; }
+        public int? SessionID { get; set; }
 
     }
 }

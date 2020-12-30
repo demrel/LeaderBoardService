@@ -64,7 +64,7 @@ namespace LeaderBoardSysytem.Controllers
                 User user = _userService.getByFBID(userFBID);
                 if (user != null)
                 {
-                  var gameSes=  _scoreService.CreateSession(user.ID);
+                  var gameSes=  _scoreService.CreateSession(user);
                     if (gameSes!=null)
                     {
                         return Ok(gameSes.Token);

@@ -119,6 +119,7 @@
                             <th scope="col">Xal</th>
                             <th scope="col">Oynama Müddəti</th>
                             <th scope="col">Oynama vaxtı</th>
+                            <th scope="col">Bitmə vaxtı</th>
                         </tr>
                         <tr>
                             <th>
@@ -128,8 +129,12 @@
 
                             </th>
                             <th>
+
+                            </th>
+                            <th>
                                 <input class="js-filter  form-control" type="date" value="">
                             </th>
+                            <th></th>
                         </tr>
 
                     </thead>
@@ -143,7 +148,16 @@
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.StartTime</td>
-                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
+                            @if (item.Time != null)
+                            {
+                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
+
+                            }
+                            @if (item.SessionID != null)
+                            {
+                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href="@Url.Action("ShowSession", "Home", new {  id = item.SessionID }, null)"><i class="fab fa-sistrix"></i></a></td>
+
+                            }
                         </tr>
                         }
 

@@ -79,12 +79,14 @@ namespace LeaderBoardService.Service
             //}).Where(s => s.UserID == userID);
         }
 
-        public GameSession CreateSession(int id)
+        public GameSession CreateSession(User user)
         {
             GameSession gs = new GameSession();
             gs.Token = Guid.NewGuid().ToString();
             gs.startTime = DateTime.UtcNow;
-            gs.UserID = id;
+            gs.user = user;
+            _context.Add(gs);
+            _context.SaveChanges();
             return gs;
         }
         public void setDataToSession(SessionDataModel model)
@@ -112,6 +114,8 @@ namespace LeaderBoardService.Service
                 session.Y3T = DateTime.UtcNow;
                 session.Y3I = model.ada;
             }
+            _context.GameSession.Update(session);
+            _context.SaveChanges();
         }
         public GameSession GetSession(string token)
         {
@@ -119,7 +123,7 @@ namespace LeaderBoardService.Service
         }
         public GameSession GetSessionByBoard(int  id)
         {
-            return _context.GameSession.Where(g => g.LeaderBoardID == id).FirstOrDefault();
+            return _context.GameSession.Find(id);
         }
         public scoredbo GetUserRank2(int userID)
         {
@@ -157,7 +161,7 @@ namespace LeaderBoardService.Service
                     return false;
                 }
 
-                var a = input.score + input.score * 1551 + input.token + input.token.Length * 528+ input.PlayTime + s + s.Length * 5115 +   s.Substring(0,10)+"csrun";
+                var a = input.score + input.score * 1551 + input.token + input.token.Length * 528+  s + s.Length * 5115 +   s.Substring(0,10)+"csrun";
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
