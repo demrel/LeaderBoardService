@@ -27,10 +27,10 @@ namespace LeaderBoardSysytem.Controllers
            // var userFBID = "3485479291543174";
             if (userFBID!=null)
             {
-                if (!_scoreService.CheckMd5S(model,sign))
-                {
-                    return NotFound();
-                }
+                //if (!_scoreService.CheckMd5S(model,sign))
+                //{
+                //    return NotFound();
+                //}
 
                 User user = _userService.getByFBID(userFBID);
                 if (user!=null)

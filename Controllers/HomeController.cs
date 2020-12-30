@@ -51,7 +51,7 @@ namespace LeaderBoardService.Controllers
                 List<LeaderBoard> leaderboard = _scoreService.GetUserScores(userID);
                 foreach (var item in leaderboard)
                 {
-                    UserScoresDTO scoreDto = new UserScoresDTO() { Time = item.Time.AddHours(4), PlayTime = item.PlayTime, Score = item.Score,StartTime=item.session.startTime };
+                    UserScoresDTO scoreDto = new UserScoresDTO() { Time = item.Time.AddHours(4), PlayTime = item.PlayTime, Score = item.Score };
                     model.score.Add(scoreDto);
                 }
                 model.Name = user.Name;

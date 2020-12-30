@@ -22,7 +22,7 @@ namespace LeaderBoardService.Service
         }
         public List<LeaderBoard> GetUserScores(int userId)
         {
-            return _context.LeaderBoard.Include(l=>l.session).Where(l => l.UserID == userId).ToList();
+            return _context.LeaderBoard.Where(l => l.UserID == userId).ToList();
            
         }
         public void Add(LeaderBoard item)
