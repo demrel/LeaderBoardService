@@ -71,6 +71,11 @@ namespace LeaderBoardSysytem.Controllers
             {
                 
                 User user = _userService.getByFBID(userFBID);
+                if (user ==null)
+                {
+                    return NotFound();
+
+                }
                 LeaderBoard rank = _scoreService.GetUserRank(user.ID);
                 if (rank!=null)
                 {

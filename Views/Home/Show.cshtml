@@ -119,7 +119,6 @@
                             <th scope="col">Xal</th>
                             <th scope="col">Oynama Müddəti</th>
                             <th scope="col">Oynama vaxtı</th>
-                            <th scope="col">Bitmə vaxtı</th>
                         </tr>
                         <tr>
                             <th>
@@ -129,12 +128,8 @@
 
                             </th>
                             <th>
-
-                            </th>
-                            <th>
                                 <input class="js-filter  form-control" type="date" value="">
                             </th>
-                            <th></th>
                         </tr>
 
                     </thead>
@@ -143,29 +138,13 @@
                         {
                             var item = Model.score[i];
 
-                            <tr id="@Model.Name">
+                        <tr id="@Model.Name">
 
-<<<<<<< HEAD
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
                             <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.StartTime</td>
-                            @if (item.Time != null)
-                            {
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
-
-                            }
-                            @if (item.SessionID != null)
-                            {
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center"><a href="@Url.Action("ShowSession", "Home", new {  id = item.SessionID }, null)"><i class="fab fa-sistrix"></i></a></td>
-
-                            }
+                            <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
                         </tr>
-=======
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Score</td>
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.PlayTime</td>
-                                <td scope="row" style="display:flex; justify-content:space-between; align-items:center">@item.Time</td>
-                            </tr>
->>>>>>> parent of 679c172... newTema
                         }
 
                     </tbody>
