@@ -35,11 +35,11 @@ namespace LeaderBoardSysytem.Controllers
                 User user = _userService.getByFBID(userFBID);
                 if (user!=null)
                 {
-                    var s = _scoreService.GetSession(model.token);
-                    if (s == null)
-                    {
-                        return NotFound();
-                    }
+                    //var s = _scoreService.GetSession(model.token);
+                    //if (s == null)
+                    //{
+                    //    return NotFound();
+                    //}
 
                     LeaderBoard leaderBoard = new LeaderBoard();
                     leaderBoard.Score = model.score;
@@ -47,7 +47,7 @@ namespace LeaderBoardSysytem.Controllers
                     leaderBoard.PlayTime = model.PlayTime;
                     leaderBoard.User = user;
                     leaderBoard.Token = sign;
-                    leaderBoard.session = s;
+                //    leaderBoard.session = s;
                     _scoreService.Add(leaderBoard);
                     UserResult result = new UserResult();
                     scoredbo data = _scoreService.GetUserRank2(user.ID);
