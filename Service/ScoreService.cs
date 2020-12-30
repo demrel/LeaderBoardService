@@ -22,7 +22,7 @@ namespace LeaderBoardService.Service
         }
         public List<LeaderBoard> GetUserScores(int userId)
         {
-            return _context.LeaderBoard.Include(l=>l.session).Where(l => l.UserID == userId).ToList();
+            return _context.LeaderBoard.Where(l => l.UserID == userId).ToList();
            
         }
         public void Add(LeaderBoard item)
@@ -89,30 +89,30 @@ namespace LeaderBoardService.Service
             _context.SaveChanges();
             return gs;
         }
-        public void setDataToSession(SessionDataModel model)
+        public void setDataToSession(string token,string log,string img)
         {
-            var session=GetSession(model.dad);
+            var session=GetSession(token);
             if (session==null)
             {
                 return;
             }
             if (string.IsNullOrEmpty(session.Y1L))
             {
-                session.Y1L = model.Log;
+                session.Y1L = log;
                 session.Y1T = DateTime.UtcNow;
-                session.Y1I = model.ada;
+                session.Y1I = img;
             }
             else if (string.IsNullOrEmpty(session.Y2L))
             {
-                session.Y2L = model.Log;
+                session.Y2L = log;
                 session.Y2T = DateTime.UtcNow;
-                session.Y2I = model.ada;
+                session.Y2I = img;
             }
             else if (string.IsNullOrEmpty(session.Y3L))
             {
-                session.Y3L = model.Log;
+                session.Y3L = log;
                 session.Y3T = DateTime.UtcNow;
-                session.Y3I = model.ada;
+                session.Y3I = img;
             }
             _context.GameSession.Update(session);
             _context.SaveChanges();
@@ -121,10 +121,13 @@ namespace LeaderBoardService.Service
         {
             return _context.GameSession.Where(g => g.Token == token).FirstOrDefault();
         }
+<<<<<<< HEAD
         public GameSession GetSessionByBoard(int  id)
         {
             return _context.GameSession.Find(id);
         }
+=======
+>>>>>>> parent of 679c172... newTema
         public scoredbo GetUserRank2(int userID)
         {
             var scoreCard = _context.LeaderBoard
@@ -147,6 +150,7 @@ namespace LeaderBoardService.Service
             // Use input string to calculate MD5 hash
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
             {
+<<<<<<< HEAD
                 string m = "";
                 string s = "";
                 try
@@ -157,11 +161,16 @@ namespace LeaderBoardService.Service
                 }
                 catch (Exception)
                 {
+=======
+                 
+>>>>>>> parent of 679c172... newTema
 
-                    return false;
-                }
 
+<<<<<<< HEAD
                 var a = s + s.Length * 151555 + s.Substring(0, 10) + "csrun";
+=======
+                var a = input.score + input.score * 1551 + input.PlayTime + sign + sign.Length * 5115 +   sign.Substring(0,10);
+>>>>>>> parent of 679c172... newTema
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
@@ -172,9 +181,10 @@ namespace LeaderBoardService.Service
                     sb.Append(hashBytes[i].ToString("X2"));
                 }
 
-                return sb.ToString().ToLower()==m;
+                return sb.ToString().ToLower()==input.m;
             }
         }
+<<<<<<< HEAD
         public bool CheckMd5S(SessionDataModel input, string sign)
         {
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
@@ -207,18 +217,24 @@ namespace LeaderBoardService.Service
                 return sb.ToString().ToLower() == m;
             }
         }
+=======
+
+>>>>>>> parent of 679c172... newTema
         public bool CheckMd5S(string sign)
         {
             // Use input string to calculate MD5 hash
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
             {
                 string m = "";
-                string s = "";
                 try
                 {
+<<<<<<< HEAD
                     var ar = sign.Split('.');
                     m = ar[2];
                     s = ar[0]+"." + ar[1];
+=======
+                        
+>>>>>>> parent of 679c172... newTema
                 }
                 catch (Exception)
                 {
@@ -226,7 +242,7 @@ namespace LeaderBoardService.Service
                     return false;
                 }
 
-                var a = s + s.Length * 151555 + s.Substring(0, 10)+"csrun"; 
+                var a = sign + sign.Length * 151555 + sign.Substring(0, 10);
                 byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(a);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
@@ -256,7 +272,6 @@ namespace LeaderBoardService.Service
             _context.AddRange(users);
             _context.SaveChanges();
         }
-
         public void addTestScore()
         {
             Random rnd = new Random();
@@ -351,7 +366,5 @@ namespace LeaderBoardService.Service
                   
             return await Task.FromResult(scoreCard);
         }
-
-       
     }
 }

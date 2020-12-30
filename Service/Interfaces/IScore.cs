@@ -21,12 +21,15 @@ namespace  LeaderBoardService.Service.Interfaces
         public void addTestUser();
         public void addTestScore();
         public void addTestScore(int UserID);
+<<<<<<< HEAD
         public GameSession CreateSession(User user);
         public void setDataToSession(SessionDataModel model);
+=======
+        public GameSession CreateSession(int id);
+        public void setDataToSession(string token, string log, string img);
+>>>>>>> parent of 679c172... newTema
         public GameSession GetSession(string token);
         public bool CheckMd5S(FBUsercScoreDataModel input, string sign);
-        public bool CheckMd5S(SessionDataModel input, string sign);
         public bool CheckMd5S(string sign);
-        public GameSession GetSessionByBoard(int id);
     }
 }

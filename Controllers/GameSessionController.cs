@@ -21,28 +21,47 @@ namespace LeaderBoardSysytem.Controllers
 
         [HttpPost]
         [EnableCors("_myAllowSpecificOrigins")]
-        public IActionResult Post([FromHeader] string sign ,[FromBody] SessionDataModel model)
+        public IActionResult Post([FromHeader] string sign ,[FromBody]FBUsercScoreDataModel model)
         {
+<<<<<<< HEAD
             string userFBID = _userService.Validate(sign);
        
             if (userFBID != null)
+=======
+            string userFBID=_userService.Validate(sign);
+            
+            if (userFBID!=null)
+>>>>>>> parent of 679c172... newTema
             {
+
                 if (!_scoreService.CheckMd5S(model, sign))
                 {
                     return NotFound();
                 }
 
                 User user = _userService.getByFBID(userFBID);
-                if (user != null)
+                if (user!=null)
                 {
-                    var s = _scoreService.GetSession(model.dad);
+                    var s = _scoreService.GetSession(model.token);
                     if (s == null)
                     {
-                        return NotFound();
+                        return NotFound(sign);
                     }
 
-                    _scoreService.setDataToSession(model);
-                    return Ok();
+                    LeaderBoard leaderBoard = new LeaderBoard();
+                    leaderBoard.Score = model.score;
+                    leaderBoard.Time = DateTime.Now;
+                    leaderBoard.PlayTime = model.PlayTime;
+                    leaderBoard.User = user;
+                    leaderBoard.Token = sign;
+                    leaderBoard.session = s;
+                    _scoreService.Add(leaderBoard);
+                    UserResult result = new UserResult();
+                    scoredbo data = _scoreService.GetUserRank2(user.ID);
+
+                    result.Rank =(int) data.Rank;
+                    result.BestScore = data.AverageScore;
+                    return Ok(result);
                 }
                 return NotFound();
             }
@@ -51,12 +70,12 @@ namespace LeaderBoardSysytem.Controllers
 
         [HttpGet]
         [EnableCors("_myAllowSpecificOrigins")]
-        public IActionResult Get([FromHeader] string sign)
+        public IActionResult Get([FromHeader]string sign)
         {
             string userFBID = _userService.Validate(sign);
             if (userFBID != null)
             {
-                if (!_scoreService.CheckMd5S(sign))
+                if (!_scoreService.CheckMd5S(string sign))
                 {
                     return NotFound();
                 }
@@ -64,14 +83,17 @@ namespace LeaderBoardSysytem.Controllers
                 User user = _userService.getByFBID(userFBID);
                 if (user != null)
                 {
+<<<<<<< HEAD
                   var gameSes=  _scoreService.CreateSession(user);
                     if (gameSes!=null)
                     {
                         return Ok(gameSes.Token);
                     }
                   
+=======
+
+>>>>>>> parent of 679c172... newTema
                 }
-            }
             return NotFound();
         }
 

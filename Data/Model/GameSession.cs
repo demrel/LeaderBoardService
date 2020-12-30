@@ -22,7 +22,10 @@ namespace LeaderBoardService.Data.Model
         public DateTime Y3T { get; set; }
         public int UserID { get; set; }
         public User user { get; set; }
+<<<<<<< HEAD
         
+=======
+>>>>>>> parent of 679c172... newTema
 
     }
 }

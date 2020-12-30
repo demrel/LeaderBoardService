@@ -89,6 +89,7 @@ namespace LeaderBoardService.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("LeaderBoardService.Data.Model.GameSession", b =>
                 {
                     b.Property<int>("ID")
@@ -139,6 +140,8 @@ namespace LeaderBoardService.Migrations
                     b.ToTable("GameSession");
                 });
 
+=======
+>>>>>>> parent of 679c172... newTema
             modelBuilder.Entity("LeaderBoardService.Data.Model.LeaderBoard", b =>
                 {
                     b.Property<int>("ID")
@@ -337,6 +340,7 @@ namespace LeaderBoardService.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("LeaderBoardService.Data.Model.GameSession", b =>
                 {
                     b.HasOne("LeaderBoardService.Data.Model.User", "user")
@@ -348,6 +352,8 @@ namespace LeaderBoardService.Migrations
                     b.Navigation("user");
                 });
 
+=======
+>>>>>>> parent of 679c172... newTema
             modelBuilder.Entity("LeaderBoardService.Data.Model.LeaderBoard", b =>
                 {
                     b.HasOne("LeaderBoardService.Data.Model.User", "User")
